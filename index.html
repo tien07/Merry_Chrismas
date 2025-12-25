@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merry Christmas 🎄</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(#0b1d3a, #1b3b6f);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        color: white;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 10px;
+        text-shadow: 0 0 15px rgba(255,255,255,0.8);
+    }
+
+    .tree {
+        font-size: 90px;
+        margin: 15px 0;
+        animation: swing 3s infinite ease-in-out;
+    }
+
+    .message {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        opacity: 0;
+        animation: fadeIn 2.5s forwards;
+        animation-delay: 1s;
+    }
+
+    .music-btn {
+        width: 80%;
+        max-width: 300px;
+        padding: 14px;
+        font-size: 18px;
+        border-radius: 30px;
+        border: none;
+        background: #ff4d6d;
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 8px 20px rgba(255,77,109,0.6);
+        cursor: pointer;
+    }
+
+    .music-btn:active {
+        transform: scale(0.96);
+    }
+
+    @keyframes swing {
+        0% { transform: rotate(-3deg); }
+        50% { transform: rotate(3deg); }
+        100% { transform: rotate(-3deg); }
+    }
+
+    @keyframes fadeIn {
+        to { opacity: 1; }
+    }
+
+    /* Snow */
+    .snow {
+        position: absolute;
+        top: -10px;
+        font-size: 12px;
+        opacity: 0.8;
+        animation: fall linear forwards;
+        pointer-events: none;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh);
+        }
+    }
+.photo-box {
+    width: 75%;
+    max-width: 260px;
+    margin: 15px 0 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    animation: fadeIn 2s forwards;
+}
+
+.photo-box img {
+    width: 100%;
+    display: block;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎄 Merry Christmas 🎄</h1>
+<div class="tree">🎄</div>
+<div class="photo-box">
+    <img src="love.jpg" alt="Ảnh của tụi mình">
+</div>
+<div class="message">
+    Chúc em Thảo một mùa Giáng Sinh thật ấm áp ❄️  
+    <br>
+    Luôn xinh đẹp, hạnh phúc
+    <br>
+    và cười thật nhiều em nhé ❤️
+</div>
+<button class="music-btn" onclick="toggleMusic()" id="musicBtn">
+    🎵 Bật nhạc
+</button>
+<audio id="music" loop>
+    <source src="Giangsinh.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const music = document.getElementById("music");
+    const btn = document.getElementById("musicBtn");
+    let isPlaying = false;
+
+    function toggleMusic() {
+        if (!isPlaying) {
+            music.play();
+            btn.innerHTML = "🔇 Tắt nhạc";
+        } else {
+            music.pause();
+            btn.innerHTML = "🎵 Bật nhạc";
+        }
+        isPlaying = !isPlaying;
+    }
+
+    function createSnow() {
+        const snow = document.createElement("div");
+        snow.className = "snow";
+        snow.innerHTML = "❄";
+        snow.style.left = Math.random() * window.innerWidth + "px";
+        snow.style.animationDuration = (4 + Math.random() * 4) + "s";
+        snow.style.fontSize = (10 + Math.random() * 10) + "px";
+        document.body.appendChild(snow);
+
+        setTimeout(() => snow.remove(), 8000);
+    }
+
+    setInterval(createSnow, 200);
+</script>
+
+</body>
+</html>
